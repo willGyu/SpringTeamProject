@@ -1,0 +1,128 @@
+Board.txt
+
+ * 프로젝트를 시작할때 준비
+ 
+  - 요구사항 설계
+    게시판 글쓰기 (사용자이름, 제목, 내용, 작성일, 조회수)
+    게시판 리스트
+    게시판 본문보기 (글 읽기), 게시판 조회수 증가
+    게시판 글 수정
+    게시판 글 삭제
+        
+  	
+  - 데이터베이스
+  	* DB 생성(계정), 테이블 생성&설계 
+  	* 더미 데이터 생성
+  	  => https://www.mockaroo.com/
+  
+  - 스프링MVC
+  	* 패키지구조(계층형, 도메인형), 코드인벤션(규칙)을 설정
+     https://ui.toast.com/fe-guide/ko_CODING-CONVENTION
+    * 팀원 각각의 역할 분담
+    * 테스트 방법 수립
+    * 필요한 라이브러리 준비 (pom.xml)
+  
+  - 화면 
+    * 뷰페이지 형태를 설정(JSP,HTML,프로그램,모바일)
+    
+    
+    https://bootswatch.com/
+    https://bootstrapthemes.co/item/page/2/
+    https://bootstrapmade.com/
+    https://themewagon.com/theme-price/free/
+    https://startbootstrap.com/
+    
+    D:\Shared\Backend 
+    1) include.zip
+    2) static.zip
+      => src/main/webapp/resources 폴더에 붙여넣기
+        (템플릿의 정보를 모두 추가)
+  
+  
+  
+  
+  
+  * 스프링의 패키지 구조
+    1) 계층형 
+       - com.itwillbs.controller
+       	  MemberController
+       	  BoardController
+       	  GoodsController
+       	  ....
+       	  
+       - com.itwillbs.domain
+       - com.itwillbs.service
+       - com.itwillbs.persistence
+       
+       장점 : 단순한 구조로 프로젝트의 이해도를 높임(주니어)
+       단점 : 하나의 패키지에 너무 많은 클래스(파일)이 존재
+              모듈 분리할때 어려움
+              
+       
+    
+    2) 도메인형 
+      - com.itwillbs.member.controller
+      	 MemberController
+ 	  - com.itwillbs.member.domain
+      - com.itwillbs.member.service
+      - com.itwillbs.member.persistence
+      
+      - com.itwillbs.board.controller
+         BoardController
+  	  - com.itwillbs.board.domain
+      - com.itwillbs.board.service
+      - com.itwillbs.board.persistence
+      
+      - com.itwillbs.itwill.board.controller
+  	  ....
+  	  
+  	
+  	 장점 : 관련코드가 모여있음 => 모듈로 분리가 쉽다 
+  	 
+  	 단점 : 프로젝트 이해도가 낮을경우 구조파악이 힘듦
+  	        개발자의 주관이 작용을 함  
+  	        패키지 순환참조 발생가능성이 높음
+  	  
+    * 프로젝트의 복잡도가 높음
+      제공하는 기능이 많음(포함된 클래스 개수 많음)
+      제공가능한 기능을 명확기준으로 분리가능
+      추후에 모듈로 분리해서 사용가능
+      => 도메인형 구조
+    
+    * 프로젝트의 복잡도가 낮음
+      제공하는 기능이 적음(포함된 클래스 개수 적음)
+      제공가능한 기능을 분리하기가 애매할때 
+      모듈 분리가 필요없는 프로젝트(소규모)
+      => 계층형 구조
+  
+  
+  
+  CREATE TABLE `springdb`.`tbl_board` (
+  `bno` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(200) NOT NULL,
+  `content` TEXT NULL,
+  `writer` VARCHAR(100) NOT NULL,
+  `viewcnt` INT NULL DEFAULT 0,
+  `regdate` TIMESTAMP NOT NULL DEFAULT now(),
+  PRIMARY KEY (`bno`))
+COMMENT = '게시판의 정보를 저장하는 테이블';
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
