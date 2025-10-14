@@ -14,7 +14,7 @@ public class SampleController {
 	private static final Logger logger 
 		= LoggerFactory.getLogger(SampleController.class);
 	
-	
+	// http://localhost:8088/all
 	@GetMapping(value = "/all")
 	public void doAll() {
 		logger.debug(" doAll()실행! ");
